@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, '../public/dist/index.html')));
 app.use("/api/v1/users", authRouter)
 app.use("/api/v1/chats", chatRouter)
 
-app.get('*', (_req, res)=>{
+app.get('/*', (_req, res)=>{
   res.sendFile(path.join(__dirname, '../public/dist/index.html'))
 })
 
