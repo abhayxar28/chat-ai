@@ -15,10 +15,10 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
+  const {login: loginUser, loading } = useLogin();
 
   const onSubmit = async (data: LoginFormData) => {
     try {
-        const {login: loginUser } = useLogin();
         await loginUser(data);
         toast.success("Logged in successful");
         navigate('/')
@@ -76,7 +76,7 @@ export default function LoginForm() {
             type="submit"
             className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
 
         </form>

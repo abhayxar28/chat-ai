@@ -14,9 +14,9 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
   const navigate = useNavigate();
+  const { register: registerUser, loading } = useRegister();
 
   const onSubmit = async (data: RegisterFormData) => {
-    const { register: registerUser } = useRegister();
     await registerUser(data);
     toast("Signed in successfully");
     navigate('/')
@@ -96,7 +96,7 @@ export default function RegisterForm() {
             type="submit"
             className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition"
           >
-            Sign Up
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
 
         </form>
