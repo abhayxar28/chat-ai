@@ -14,12 +14,12 @@ app.use(cors({
     credentials: true
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public/dist')));
+app.use(express.static(path.join(__dirname, '../public/dist/index.html')));
 
 app.use("/api/v1/users", authRouter)
 app.use("/api/v1/chats", chatRouter)
 
-app.get('*name', (_req, res)=>{
+app.get('*', (_req, res)=>{
   res.sendFile(path.join(__dirname, '../public/dist/index.html'))
 })
 
