@@ -39,11 +39,11 @@ export default function RegisterForm() {
             <input
               type="text"
               placeholder="John"
-              {...register("firstName")}
+              {...register("fullName.firstName")}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black dark:bg-neutral-700 dark:border-neutral-600 dark:text-white"
             />
-            {errors.firstName && (
-              <p className="text-red-500 text-sm">{errors.firstName.message}</p>
+            {errors.fullName?.firstName && (
+              <p className="text-red-500 text-sm">{errors.fullName.firstName.message}</p>
             )}
           </div>
 
@@ -54,11 +54,11 @@ export default function RegisterForm() {
             <input
               type="text"
               placeholder="Doe"
-              {...register("lastName")}
+              {...register("fullName.lastName")}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black dark:bg-neutral-700 dark:border-neutral-600 dark:text-white"
             />
-            {errors.lastName && (
-              <p className="text-red-500 text-sm">{errors.lastName.message}</p>
+            {errors.fullName?.lastName && (
+              <p className="text-red-500 text-sm">{errors.fullName.lastName.message}</p>
             )}
           </div>
 

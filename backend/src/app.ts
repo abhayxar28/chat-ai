@@ -11,17 +11,18 @@ connectDB();
 
 app.use(express.json());
 app.use(cors({
+    origin: process.env.FRONTEND_URL!,
     credentials: true
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
+// app.use(express.static(path.join(__dirname, '../public')));
 
 app.use("/api/v1/users", authRouter)
 app.use("/api/v1/chats", chatRouter)
 
-app.get("/{*path}", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
-});
+// app.get("/{*path}", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../public/index.html"));
+// });
 
 export default app;
 

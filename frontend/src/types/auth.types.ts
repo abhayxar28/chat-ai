@@ -5,12 +5,14 @@ export interface User {
   fullName: {
     firstName: string;
     lastName: string;
-  };
+  }
 }
 
 export interface RegisterPayload {
-  firstName: string;
-  lastName: string;
+  fullName: {
+    firstName: string;
+    lastName: string;
+  };
   email: string;
   password: string;
 }
