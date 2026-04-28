@@ -40,29 +40,31 @@ export default function ChatList() {
 
     if(loading) {
         return (
-            <div className="flex-1 flex items-center justify-center p-4">
-                <p className="text-gray-500">Loading chats...</p>
+            <div className="flex flex-1 items-center justify-center p-4">
+                <p className="text-sm text-slate-400">Loading chats...</p>
             </div>
         )
     }
 
     if(chats.length === 0) {
         return (
-            <div className="flex-1 flex items-center justify-center p-4">
-                <p className="text-gray-500">No chats yet. Start a new conversation!</p>
+            <div className="flex flex-1 items-center justify-center p-4">
+                <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 p-4 text-center text-sm text-slate-400">
+                    No chats yet. Start a new conversation!
+                </div>
             </div>
         )
     }
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-1.5">
             {chats.map((chat) => {
                 const isEditing = editingId === chat._id;
 
                 return (
                     <div
                         key={chat._id}
-                        className={`group flex items-center justify-between p-3 rounded-2xl hover:bg-gray-700/60 transition ${activeChat === chat._id ? "bg-gray-700/60" : ""}`}
+                        className={`group flex items-center justify-between rounded-2xl border px-3 py-3 transition ${activeChat === chat._id ? "border-white/15 bg-white/8" : "border-white/5 bg-transparent hover:border-white/10 hover:bg-white/5"}`}
                     >
                         <div
                             className="flex-1 cursor-pointer"
@@ -77,25 +79,25 @@ export default function ChatList() {
                                         if (e.key === "Enter") handleSave(chat._id);
                                         if (e.key === "Escape") setEditingId(null);
                                     }}
-                                    className="w-full bg-gray-800 px-2 py-1 rounded outline-none"
+                                    className="w-full rounded-xl border border-white/10 bg-[#111111] px-2 py-1 outline-none"
                                 />
                             ) : (
-                                <p className="text-sm truncate">{chat.title}</p>
+                                <p className="truncate text-sm text-stone-100">{chat.title}</p>
                             )}
                         </div>
 
-                        <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition">
+                        <div className="flex items-center space-x-2 opacity-0 transition group-hover:opacity-100">
                             {isEditing ? (
                                 <>
                                     <button
                                         onClick={() => handleSave(chat._id)}
-                                        className="p-1 hover:text-green-400"
+                                        className="p-1 text-stone-400 hover:text-stone-100"
                                     >
                                         <Check size={16} />
                                     </button>
                                     <button
                                         onClick={() => setEditingId(null)}
-                                        className="p-1 hover:text-red-400"
+                                        className="p-1 text-stone-400 hover:text-stone-100"
                                     >
                                         <X size={16} />
                                     </button>
@@ -104,13 +106,13 @@ export default function ChatList() {
                                 <>
                                     <button
                                         onClick={() => handleEdit(chat)}
-                                        className="p-1 hover:text-blue-400"
+                                        className="p-1 text-stone-500 hover:text-stone-100"
                                     >
                                         <Pencil size={16} />
                                     </button>
                                     <button
                                         onClick={() => handleDelete(chat._id)}
-                                        className="p-1 hover:text-red-400"
+                                        className="p-1 text-stone-500 hover:text-stone-100"
                                     >
                                         <Trash2 size={16} />
                                     </button>

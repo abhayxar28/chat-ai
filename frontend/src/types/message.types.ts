@@ -4,7 +4,7 @@ export interface MessageType {
     chat: string;
     user: string;
     content: string;
-    role: "user" | "model",
+    role: "user" | "model" | "system",
     createdAt?: string;
     updatedAt?: string;
 }

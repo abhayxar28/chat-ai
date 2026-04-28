@@ -2,12 +2,10 @@ import express from 'express'
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import path from 'path';
-import connectDB from './db/db';
 import authRouter from './routes/auth.routes'
 import chatRouter from './routes/chat.routes'
 
 const app = express();
-connectDB();
 
 app.use(express.json());
 app.use(cors({

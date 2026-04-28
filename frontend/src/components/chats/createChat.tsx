@@ -1,24 +1,22 @@
 import { useActiveChat } from '../../context/activateChatContext';
 import { useTypingChat } from '../../context/typingChatContext';
-import { useMessages } from '../../hooks/useMessages';
 
 
 export default function CreateChat() {
     const { setActiveChat } = useActiveChat();
-    const { setMessages } = useMessages();
     const { setTypingChatId } = useTypingChat();
 
     const handleCreateChat = () => {
         setActiveChat(null);
-        setMessages([]);
         setTypingChatId(null);
     };
 
     return (
         <button
             onClick={handleCreateChat}
-            className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-sm text-white transition cursor-pointer"
+            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm font-medium text-stone-100 transition hover:bg-white/10 cursor-pointer"
         >
+            <span className="text-lg leading-none">+</span>
             Create Chat
         </button>
     );

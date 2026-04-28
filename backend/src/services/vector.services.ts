@@ -17,23 +17,28 @@ export async function createMemory({
   metadata,
   messageId,
 }: CreateMemoryParams) {
-  if (!vectors || !Array.isArray(vectors) || vectors.length === 0) {
-    throw new Error("Invalid vectors");
-  }
+  try {
+    if (!vectors || !Array.isArray(vectors) || vectors.length === 0) {
+      return;
+    }
 
-  if (!messageId) {
-    throw new Error("messageId is required");
-  }
+    if (!messageId) {
+      return;
+    }
 
-  await chatgptIndex.upsert({
-    records: [
-        {
-            id: String(messageId),
-            values: vectors,
-            metadata
-        }
-    ]
-  });
+    await chatgptIndex.upsert({
+      records: [
+          {
+              id: String(messageId),
+              values: vectors,
+              metadata
+          }
+      ]
+    });
+  } catch (error) {
+    console.error("[Vector] Error creating memory:", error);
+    // Silently fail - vector memory is optional
+  }
 }
 
 interface QueryMemoryParams {
@@ -47,12 +52,18 @@ export async function queryMemory({
   limit = 5,
   metadata,
 }: QueryMemoryParams) {
-  const data = await chatgptIndex.query({
-    vector: queryVector,
-    topK: limit,
-    filter: metadata,
-    includeMetadata: true,
-  });
+  try {
+    const data = await chatgptIndex.query({
+      vector: queryVector,
+      topK: limit,
+      filter: metadata,
+      includeMetadata: true,
+    });
 
-  return data.matches ?? [];
+    return data.matches ?? [];
+  } catch (error) {
+    console.error("[Vector] Error querying memory:", error);
+    // Return empty array on error - vector memory is optional
+    return [];
+  }
 }

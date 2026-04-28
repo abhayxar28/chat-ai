@@ -8,7 +8,18 @@ async function connectDB(){
         console.log('Connected to mongodb')
     } catch (error) {
         console.error('Error connecting to mongodb', error)
+        process.exit(1);
     }
 }
 
+async function disconnectDB() {
+    try {
+        await mongoose.disconnect();
+        console.log('Disconnected from mongodb');
+    } catch (error) {
+        console.error('Error disconnecting from mongodb', error);
+    }
+}
+
+export { connectDB, disconnectDB };
 export default connectDB;

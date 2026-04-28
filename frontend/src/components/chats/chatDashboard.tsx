@@ -5,25 +5,28 @@ import CreateChat from "./createChat";
 
 export default function ChatDashboard() {
   return (
-    <div className="flex h-screen bg-linear-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-      <aside className="w-80 bg-gray-850/50 backdrop-blur-sm border-r border-gray-700/50 flex flex-col">
-        <div className="p-6 border-b border-gray-700/50">
+    <div className="flex h-screen overflow-hidden bg-[#111111] text-white">
+      <aside className="flex w-80 flex-col border-r border-white/10 bg-[#161616]">
+        <div className="border-b border-white/10 p-5">
           <CreateChat />
         </div>
 
-        <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+        <nav className="flex-1 overflow-y-auto p-3">
           <ChatList/>
         </nav>
 
 
-        <div className="p-6 border-t border-gray-700/50">
+        <div className="border-t border-white/10 p-4">
           <Profile/>
         </div>
       </aside>
 
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="bg-gray-850/50 border-b border-gray-700/50 p-6 text-center">
-          <h1 className="text-2xl font-bold">ChatAI</h1>
+        <header className="border-b border-white/10 bg-[#111111] px-6 py-4 backdrop-blur-xl">
+          <div className="mx-auto inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-stone-100 shadow-lg shadow-black/20">
+            <span className="h-2 w-2 rounded-full bg-white/80 shadow-[0_0_20px_rgba(255,255,255,0.45)]" />
+            ChatAI
+          </div>
         </header>
         <div className="flex-1 min-h-0">
           <Socket/>
